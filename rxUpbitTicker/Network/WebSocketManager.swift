@@ -7,6 +7,7 @@
 
 import Foundation
 import Starscream
+import RxSwift
 
 let UPBIT_URL = "wss://api.upbit.com/websocket/v1"
 
@@ -66,9 +67,13 @@ extension WebSocketManager: WebSocketDelegate {
             print("Received text: \(string)")
         case .binary(let data):
 //            print("Received data: \(data.count)")
-            if let dataString = String(data: data, encoding: .utf8) {
-                print(dataString)
-            }
+//            if let dataString = String(data: data, encoding: .utf8) {
+//                print(dataString)
+//            }
+            let ticker = try? JSONDecoder().decode(UpbitTickerModel.self, from: data)
+            print(ticker)
+            // 여기서 발행해야할거같음
+            
         case .ping(_):
             break
         case .pong(_):
