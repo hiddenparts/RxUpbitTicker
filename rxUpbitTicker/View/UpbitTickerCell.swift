@@ -33,8 +33,18 @@ class UpbitTickerCell: UITableViewCell {
         guard let ticker = ticker else { return }
         
         nameLabel.text = ticker.code
-        priceLabel.text = "\(ticker.tradePrice)"
-        changeRateLabel.text = "\(ticker.changeRate)"
-        tradeLabel.text = "\(ticker.tradeVolume)"
+        priceLabel.text = {
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = .decimal
+            return numberFormatter.string(from: NSNumber(value: ticker.tradePrice))!
+        }()
+        changeRateLabel.text = String.init(format: "%.2f%%", ticker.changeRate * 100)
+        tradeLabel.text = {
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = .decimal
+            return numberFormatter.string(from: NSNumber(value: Int(ticker.accTradePrice24H / 1_000_000)))! + "백만"
+        }()
     }
+    
+    
 }

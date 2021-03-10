@@ -34,4 +34,7 @@ class TickerManager {
             WebSocketManager.shared.write(message: message)
         }
     }
+    
+    // TODO
+    // 여러 티커들을 모아서 정렬시키고 할 수 있게..
 }

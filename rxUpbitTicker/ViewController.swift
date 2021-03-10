@@ -20,11 +20,11 @@ class ViewController: UIViewController {
         
         title = "현재 시세"
         
-        initTableView()
+//        initTableView()
         
-//        tableView.rx.setDelegate(self).disposed(by: disposeBag)
-//        bindTableView()
-//        WebSocketManager.shared.viewModel = viewModel
+        tableView.rx.setDelegate(self).disposed(by: disposeBag)
+        bindTableView()
+        WebSocketManager.shared.viewModel = viewModel
     }
     
     func initTableView() {
@@ -33,10 +33,12 @@ class ViewController: UIViewController {
     }
     
     private func bindTableView() {
+        // viewModel의 tickers(output)의 데이터가 tableView로 흐름
         viewModel.tickers
             .drive(tableView.rx.items(cellIdentifier: UpbitTickerCell.identifier, cellType: UpbitTickerCell.self)) { index, ticker, cell in
                 cell.ticker = ticker                
             }.disposed(by: disposeBag)
+        
     }
 
 }

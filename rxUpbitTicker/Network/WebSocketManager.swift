@@ -39,8 +39,10 @@ class WebSocketManager {
     }
     
     func connect() {
-        socket.connect()
-        print("web socket start")
+        if !isConnected {
+            socket.connect()
+            print("web socket start")
+        }
     }
     
     func write(message: String) {
@@ -75,6 +77,8 @@ extension WebSocketManager: WebSocketDelegate {
         case .binary(let data):
             if let ticker = try? JSONDecoder().decode(UpbitTickerModel.self, from: data) {
                 print(ticker)
+                // viewModel의 input에 데이터 전달
+                viewModel?.input.accept([ticker])
             }
             
         case .ping(_):

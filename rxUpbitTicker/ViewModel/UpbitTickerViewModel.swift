@@ -10,9 +10,22 @@ import RxCocoa
 
 class UpbitTickerViewModel {
 
-    var datas = PublishSubject<[UpbitTickerModel]>()
+    var input = PublishRelay<[UpbitTickerModel]>()
     
-    lazy var tickers: Driver<[UpbitTickerModel]> = {
-        return datas.asDriver(onErrorJustReturn: [])
-    }()
+    // output
+    var tickers: Driver<[UpbitTickerModel]>
+    
+    private var _tickers = PublishRelay<[UpbitTickerModel]>()
+    
+    let disposeBag = DisposeBag()
+    
+    init() {
+        self.tickers = _tickers.asDriver(onErrorJustReturn: [])
+        
+        // input으로 들어온 TickerModel은 내부의 _tickers에게 전달
+        // input은 WebSocketManager로 부터 들어옴
+        self.input
+            .bind(to: _tickers)
+            .disposed(by: disposeBag)
+    }
 }
