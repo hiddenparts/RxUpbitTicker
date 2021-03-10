@@ -1,5 +1,5 @@
 //
-//  UpBitTickerCell.swift
+//  UpbitTickerCell.swift
 //  rxUpbitTicker
 //
 //  Created by parts.ss on 2021/03/04.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UpBitTickerCell: UITableViewCell {
+class UpbitTickerCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!          // 이름
     @IBOutlet weak var priceLabel: UILabel!         // 가격
@@ -29,7 +29,7 @@ class UpBitTickerCell: UITableViewCell {
         update()
     }
 
-    func update() {
+    private func update() {
         guard let ticker = ticker else { return }
         
         nameLabel.text = ticker.code

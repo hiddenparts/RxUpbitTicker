@@ -14,13 +14,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        _ = WebSocketManager.shared
+        WebSocketManager.shared.connect()
         
         return true
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        WebSocketManager.shared.close()
+        WebSocketManager.shared.disconnect()
     }
     
 }
