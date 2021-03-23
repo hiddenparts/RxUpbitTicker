@@ -76,9 +76,13 @@ extension WebSocketManager: WebSocketDelegate {
             print("Received text: \(string)")
         case .binary(let data):
             if let ticker = try? JSONDecoder().decode(UpbitTickerModel.self, from: data) {
-                print(ticker)
+//                print(ticker)
+                
+                TickerManager.shared.appendTicker(ticker: ticker)
+                let tickers = TickerManager.shared.tickerDict.values.sorted { ($0?.accTradePrice24H ?? 0.0) > ($1?.accTradePrice24H ?? 0.0) }.compactMap { $0 }
+                
                 // viewModel의 input에 데이터 전달
-                viewModel?.input.accept([ticker])
+                viewModel?.input.accept(tickers)
             }
             
         case .ping(_):

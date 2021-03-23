@@ -22,9 +22,7 @@ struct UpbitRequestModel: Encodable {
     var typeCodes = UpbitTypeCodes()
 
     mutating func addCode(code: String) {
-        if typeCodes.codes.isEmpty {
-            typeCodes.codes.append(code)
-        }
+        typeCodes.codes.append(code)
     }
 
     func toJSONString() -> String? {

@@ -20,7 +20,7 @@ Upbit에서 제공하는 API를 통해 업비트 시세 조회앱을 만들어�
 - RxSwift
 - RxCocoa
 - StarScream (WebSocket)
-- SwiftLint
+- ~SwiftLint~ (변수명에서 너무 많은 에러 발생...;)
 
 ## 구상하는 아키텍처 패턴
 
@@ -45,4 +45,4 @@ Upbit에서 제공하는 API를 통해 업비트 시세 조회앱을 만들어�
 1. api매니저와 모델 구성
 2. 데이터를 일단 rx안쓰고 뿌려본다
 3. 이걸 rx하게 고쳐본다
-
+4. TickerManager에서 코인별로 리스트를 꾸려서 뿌려본다..

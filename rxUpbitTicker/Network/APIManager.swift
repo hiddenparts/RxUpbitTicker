@@ -25,21 +25,17 @@ class APIManager {
     private init() {
     }
     
-    private func request(completion: () -> ()) {
-        
-    }
-    
-    static func getMarketAll(completion: @escaping ([UpbitMarketCodeModel]) -> ()) {
+    private func request<T: Codable>(url: URL, completion: @escaping (T) -> ()) {
         let session = URLSession(configuration: URLSessionConfiguration.default)
         
-        let request = URLRequest(url: ServiceURL.marketAll.getURL())
+        let request = URLRequest(url: url)
         let task = session.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else {
                 do {
                     if let data = data {
-                        let marketData = try JSONDecoder().decode([UpbitMarketCodeModel].self, from: data)
+                        let marketData = try JSONDecoder().decode(T.self, from: data)
                         completion(marketData)
                     } else {
                         print("error")
@@ -50,5 +46,9 @@ class APIManager {
             }
         }
         task.resume()
+    }
+    
+    func getMarketAll(completion: @escaping ([UpbitMarketCodeModel]) -> ()) {
+        request(url: ServiceURL.marketAll.getURL(), completion: completion)
     }
 }
