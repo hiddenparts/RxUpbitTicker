@@ -22,13 +22,12 @@ class ViewController: UIViewController {
         
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
         bindTableView()
-        WebSocketManager.shared.viewModel = viewModel
     }
 
     private func bindTableView() {
         // viewModel의 output의 데이터가 tableView로 흐름
         viewModel.output
-            .throttle(.seconds(1))
+//            .throttle(.seconds(1))
             .drive(tableView.rx.items(cellIdentifier: UpbitTickerCell.identifier, cellType: UpbitTickerCell.self)) { index, ticker, cell in
                 cell.ticker = ticker                
             }.disposed(by: disposeBag)

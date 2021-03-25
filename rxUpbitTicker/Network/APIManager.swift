@@ -10,7 +10,7 @@ import Foundation
 class APIManager {
     
     enum ServiceURL: String {
-        case marketAll = "https://api.upbit.com/v1/market/all"
+        case marketAll = "https://api.upbit.com/v1/market/all?isDetails=true"
         
         func getURL() -> URL {
             switch self {

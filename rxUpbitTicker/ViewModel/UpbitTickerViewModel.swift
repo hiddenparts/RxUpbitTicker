@@ -13,7 +13,8 @@ class UpbitTickerViewModel {
     // 210318. 뷰모델에 대한 정확한 역할 고민
     
     // input은 WebSocketManager로 부터 들어옴
-    var input = PublishRelay<[UpbitTickerModel]>()
+    // model == input
+    var input: PublishRelay<[UpbitTickerModel]>
     
     // output
     var output: Driver<[UpbitTickerModel]>
@@ -21,6 +22,10 @@ class UpbitTickerViewModel {
     let disposeBag = DisposeBag()
     
     init() {
+        self.input = PublishRelay<[UpbitTickerModel]>()
         self.output = input.asDriver(onErrorJustReturn: [])
+        
+        // 모델에 영향을 주는 코드는 뷰모델에서 관리
+        WebSocketManager.shared.viewModel = self
     }
 }

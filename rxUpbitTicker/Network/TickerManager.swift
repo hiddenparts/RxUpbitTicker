@@ -10,7 +10,7 @@ import Foundation
 class TickerManager {
     static let shared = TickerManager()
     
-    var tickerDict:[String:UpbitTickerModel?] = [String:UpbitTickerModel?]()
+    var tickerDict:[String:UpbitTickerModel] = [String:UpbitTickerModel]()
     
     private init() {
         
@@ -18,12 +18,13 @@ class TickerManager {
     
     func start() {
         APIManager.shared.getMarketAll { models in
-            self.requestUpbitTicker(models: models.filter { $0.market.contains("KRW-") })
+            let krwSymbols = models.filter { $0.market.contains("KRW-") }
+            self.requestUpbitTicker(models: krwSymbols)
         }
     }
     
     func requestUpbitTicker(models: [UpbitMarketCodeModel]) {
-        var requestModel = UpbitRequestModel()
+        var requestModel = UpbitWebSocketRequestModel()
         models.forEach { requestModel.addCode(code: $0.market) }
         
         if let message = requestModel.toJSONString() {
@@ -35,5 +36,10 @@ class TickerManager {
     // 여러 티커들을 모아서 정렬시키고 할 수 있게..
     func appendTicker(ticker: UpbitTickerModel) {
         tickerDict[ticker.code] = ticker
+    }
+    
+    func sortedTickerList() -> [UpbitTickerModel] {
+//        return tickerDict.values.map { $0 }
+        return tickerDict.values.sorted { $0.accTradePrice24H > $1.accTradePrice24H }.compactMap { $0 }
     }
 }

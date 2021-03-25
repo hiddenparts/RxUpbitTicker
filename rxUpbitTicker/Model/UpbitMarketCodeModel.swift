@@ -11,10 +11,12 @@ struct UpbitMarketCodeModel: Codable {
     let market: String
     let koreanName: String
     let englishName: String
+    let marketWarning: String = "NONE"
  
     enum CodingKeys: String, CodingKey {
         case market
         case koreanName = "korean_name"
         case englishName = "english_name"
+        case marketWarning = "market_warning"
     }
 }

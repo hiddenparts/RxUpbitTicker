@@ -79,7 +79,7 @@ extension WebSocketManager: WebSocketDelegate {
 //                print(ticker)
                 
                 TickerManager.shared.appendTicker(ticker: ticker)
-                let tickers = TickerManager.shared.tickerDict.values.sorted { ($0?.accTradePrice24H ?? 0.0) > ($1?.accTradePrice24H ?? 0.0) }.compactMap { $0 }
+                let tickers = TickerManager.shared.sortedTickerList()
                 
                 // viewModel의 input에 데이터 전달
                 viewModel?.input.accept(tickers)

@@ -15,7 +15,7 @@
 		6F47F3BC25E68E3300C21EB2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F47F3BA25E68E3300C21EB2 /* Main.storyboard */; };
 		6F47F3BE25E68E3E00C21EB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F47F3BD25E68E3E00C21EB2 /* Assets.xcassets */; };
 		6F47F3C125E68E3E00C21EB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F47F3BF25E68E3E00C21EB2 /* LaunchScreen.storyboard */; };
-		6F5EF85225F91E8000AE77C0 /* UpbitRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5EF85125F91E8000AE77C0 /* UpbitRequestModel.swift */; };
+		6F5EF85225F91E8000AE77C0 /* UpbitWebSocketRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5EF85125F91E8000AE77C0 /* UpbitWebSocketRequestModel.swift */; };
 		6F5EF85B25F9236B00AE77C0 /* TickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5EF85A25F9236B00AE77C0 /* TickerManager.swift */; };
 		6FEC2D7125EE801A000783C4 /* WebSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FEC2D7025EE801A000783C4 /* WebSocketManager.swift */; };
 		7CC9B599B64B9E8F8DDBAF35 /* Pods_rxUpbitTicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92C3DB7898C521C6BA1CE5CD /* Pods_rxUpbitTicker.framework */; };
@@ -37,7 +37,7 @@
 		6F47F3C225E68E3E00C21EB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F47F3C925E68E5100C21EB2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6F47F3CA25E6909300C21EB2 /* mockup.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mockup.jpeg; sourceTree = "<group>"; };
-		6F5EF85125F91E8000AE77C0 /* UpbitRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpbitRequestModel.swift; sourceTree = "<group>"; };
+		6F5EF85125F91E8000AE77C0 /* UpbitWebSocketRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpbitWebSocketRequestModel.swift; sourceTree = "<group>"; };
 		6F5EF85A25F9236B00AE77C0 /* TickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerManager.swift; sourceTree = "<group>"; };
 		6FEC2D7025EE801A000783C4 /* WebSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketManager.swift; sourceTree = "<group>"; };
 		8690DA6525F0D2BD007C76A1 /* UpbitTickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpbitTickerCell.swift; sourceTree = "<group>"; };
@@ -154,7 +154,7 @@
 			children = (
 				8690DA6E25F0D651007C76A1 /* UpbitTickerModel.swift */,
 				6F3371C625F1394100415D83 /* UpbitMarketCodeModel.swift */,
-				6F5EF85125F91E8000AE77C0 /* UpbitRequestModel.swift */,
+				6F5EF85125F91E8000AE77C0 /* UpbitWebSocketRequestModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -280,7 +280,7 @@
 				6F47F3B525E68E3300C21EB2 /* AppDelegate.swift in Sources */,
 				8690DA6A25F0D48D007C76A1 /* APIManager.swift in Sources */,
 				6F3371C425F1371500415D83 /* UITableViewCell+identifier.swift in Sources */,
-				6F5EF85225F91E8000AE77C0 /* UpbitRequestModel.swift in Sources */,
+				6F5EF85225F91E8000AE77C0 /* UpbitWebSocketRequestModel.swift in Sources */,
 				6F3371A925F0E7E600415D83 /* UpbitTickerViewModel.swift in Sources */,
 				8690DA6625F0D2BD007C76A1 /* UpbitTickerCell.swift in Sources */,
 				6FEC2D7125EE801A000783C4 /* WebSocketManager.swift in Sources */,
