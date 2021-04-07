@@ -83,6 +83,8 @@ extension WebSocketManager: WebSocketDelegate {
                 
                 // viewModel의 input에 데이터 전달
                 viewModel?.input.accept(tickers)
+                
+                // 여기서 이벤트를 발생시켜야함
             }
             
         case .ping(_):

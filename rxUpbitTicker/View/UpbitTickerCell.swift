@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import RxSwift
 
 class UpbitTickerCell: UITableViewCell {
 
+    var subject = PublishSubject<UpbitTickerModel>()
+    var disposeBag = DisposeBag()
+    
     @IBOutlet weak var nameLabel: UILabel!          // 이름
     @IBOutlet weak var priceLabel: UILabel!         // 가격
     @IBOutlet weak var changeRateLabel: UILabel!    // 전일대비
@@ -20,13 +24,12 @@ class UpbitTickerCell: UITableViewCell {
         }
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
     override func prepareForReuse() {
         update()
+        disposeBag = DisposeBag()
+        subject.subscribe { event in
+            self.ticker = event.element
+        }.disposed(by: disposeBag)
     }
 
     private func update() {
@@ -45,6 +48,5 @@ class UpbitTickerCell: UITableViewCell {
             return numberFormatter.string(from: NSNumber(value: Int(ticker.accTradePrice24H / 1_000_000)))! + "백만"
         }()
     }
-    
     
 }

@@ -19,11 +19,13 @@ class UpbitTickerViewModel {
     // output
     var output: Driver<[UpbitTickerModel]>
     
-    let disposeBag = DisposeBag()
+    var input1: PublishRelay<[Observable<UpbitTickerModel>]>
     
     init() {
         self.input = PublishRelay<[UpbitTickerModel]>()
         self.output = input.asDriver(onErrorJustReturn: [])
+        
+        self.input1 = PublishRelay()
         
         // 모델에 영향을 주는 코드는 뷰모델에서 관리
         WebSocketManager.shared.viewModel = self
