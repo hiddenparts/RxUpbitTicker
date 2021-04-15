@@ -12,6 +12,10 @@
 
 import Foundation
 
+struct UpbitTickerEmptyModel: Codable {
+    
+}
+
 // MARK: - UpbitTickerModel
 struct UpbitTickerModel: Codable {
     let type, code: String
@@ -40,43 +44,43 @@ struct UpbitTickerModel: Codable {
     let accTradePrice24H, accTradeVolume24H: Double
     let streamType: String
 
-//    init() {
-//        self.type = ""
-//        self.code = "NONE"
-//        self.openingPrice = 0
-//        self.highPrice = 0
-//        self.lowPrice = 0
-//        self.tradePrice = 0
-//        self.prevClosingPrice = 0
-//        self.accTradePrice = 0
-//        self.change = ""
-//        self.changePrice = 0
-//        self.signedChangePrice = 0
-//        self.changeRate = 0
-//        self.signedChangeRate = 0
-//        self.askBid = ""
-//        self.tradeVolume = 0
-//        self.accTradeVolume = 0
-//        self.tradeDate = ""
-//        self.tradeTime = ""
-//        self.tradeTimestamp = 0
-//        self.accAskVolume = 0
-//        self.accBidVolume = 0
-//        self.highest52_WeekPrice = 0
-//        self.highest52_WeekDate = ""
-//        self.lowest52_WeekPrice = 0
-//        self.lowest52_WeekDate = ""
-//        self.tradeStatus = ""
-//        self.marketState = ""
-//        self.marketStateForIos = ""
-//        self.isTradingSuspended = false
-//        self.delistingDate = ""
-//        self.marketWarning = ""
-//        self.timestamp = 0
-//        self.accTradePrice24H = 0
-//        self.accTradeVolume24H = 0
-//        self.streamType = ""
-//    }
+    init() {
+        self.type = ""
+        self.code = "NONE"
+        self.openingPrice = 0
+        self.highPrice = 0
+        self.lowPrice = 0
+        self.tradePrice = 0
+        self.prevClosingPrice = 0
+        self.accTradePrice = 0
+        self.change = ""
+        self.changePrice = 0
+        self.signedChangePrice = 0
+        self.changeRate = 0
+        self.signedChangeRate = 0
+        self.askBid = ""
+        self.tradeVolume = 0
+        self.accTradeVolume = 0
+        self.tradeDate = ""
+        self.tradeTime = ""
+        self.tradeTimestamp = 0
+        self.accAskVolume = 0
+        self.accBidVolume = 0
+        self.highest52_WeekPrice = 0
+        self.highest52_WeekDate = ""
+        self.lowest52_WeekPrice = 0
+        self.lowest52_WeekDate = ""
+        self.tradeStatus = ""
+        self.marketState = ""
+        self.marketStateForIos = ""
+        self.isTradingSuspended = false
+        self.delistingDate = ""
+        self.marketWarning = ""
+        self.timestamp = 0
+        self.accTradePrice24H = 0
+        self.accTradeVolume24H = 0
+        self.streamType = ""
+    }
     
     enum CodingKeys: String, CodingKey {
         case type, code

@@ -78,13 +78,14 @@ extension WebSocketManager: WebSocketDelegate {
             if let ticker = try? JSONDecoder().decode(UpbitTickerModel.self, from: data) {
 //                print(ticker)
                 
-                TickerManager.shared.appendTicker(ticker: ticker)
-                let tickers = TickerManager.shared.sortedTickerList()
+//                TickerManager.shared.appendTicker(ticker: ticker)
+//                let tickers = TickerManager.shared.sortedTickerList()
                 
                 // viewModel의 input에 데이터 전달
-                viewModel?.input.accept(tickers)
+//                viewModel?.input.accept(tickers)
                 
                 // 여기서 이벤트를 발생시켜야함
+                viewModel?.updateTicker(ticker: ticker)
             }
             
         case .ping(_):

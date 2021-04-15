@@ -12,6 +12,7 @@ class UpbitTickerCell: UITableViewCell {
 
     var subject = PublishSubject<UpbitTickerModel>()
     var disposeBag = DisposeBag()
+    var ob: Observable<UpbitTickerModel>?
     
     @IBOutlet weak var nameLabel: UILabel!          // 이름
     @IBOutlet weak var priceLabel: UILabel!         // 가격
@@ -27,9 +28,15 @@ class UpbitTickerCell: UITableViewCell {
     override func prepareForReuse() {
         update()
         disposeBag = DisposeBag()
-        subject.subscribe { event in
-            self.ticker = event.element
-        }.disposed(by: disposeBag)
+//        subject.subscribe { event in
+//            self.ticker = event.element
+//        }.disposed(by: disposeBag)
+        
+        ob?.observe(on: MainScheduler())
+            .asDriver(onErrorJustReturn: UpbitTickerModel())
+            .drive(onNext: { ticker in
+                self.ticker = ticker
+            }).disposed(by: disposeBag)
     }
 
     private func update() {

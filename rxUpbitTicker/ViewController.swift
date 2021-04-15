@@ -26,16 +26,15 @@ class ViewController: UIViewController {
 
     private func bindTableView() {
         // viewModel의 output의 데이터가 tableView로 흐름
-        viewModel.output
-            .drive(tableView.rx.items(cellIdentifier: UpbitTickerCell.identifier, cellType: UpbitTickerCell.self)) { index, ticker, cell in
-//                cell.ticker = ticker
-                cell.subject.onNext(ticker)
-            }.disposed(by: disposeBag)
+//        viewModel.output
+//            .drive(tableView.rx.items(cellIdentifier: UpbitTickerCell.identifier, cellType: UpbitTickerCell.self)) { index, ticker, cell in
+//                cell.subject.onNext(ticker)
+//            }.disposed(by: disposeBag)
         
-        // 210318. 다음숙제는 어떻게 해야지 안버벅댈까
-        // 패인?
-        // cell과 각 ticker를 연결해줘야하는데 그렇게 안함
-        // reloadData에서 reloadRows만 되게 하고싶었는데
+        viewModel.output1
+            .drive(tableView.rx.items(cellIdentifier: UpbitTickerCell.identifier, cellType: UpbitTickerCell.self)) { idx, obTicker, cell in
+                cell.ob = obTicker
+            }.disposed(by: disposeBag)
     }
 
 }
