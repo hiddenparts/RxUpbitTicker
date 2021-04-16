@@ -76,7 +76,7 @@ extension WebSocketManager: WebSocketDelegate {
             print("Received text: \(string)")
         case .binary(let data):
             if let ticker = try? JSONDecoder().decode(UpbitTickerModel.self, from: data) {
-//                print(ticker)
+//                print(ticker.code)
                 
 //                TickerManager.shared.appendTicker(ticker: ticker)
 //                let tickers = TickerManager.shared.sortedTickerList()

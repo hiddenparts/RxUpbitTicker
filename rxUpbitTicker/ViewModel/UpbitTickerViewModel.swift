@@ -27,6 +27,9 @@ class UpbitTickerViewModel {
         self.input1 = PublishRelay()
         self.output1 = input1.asDriver(onErrorJustReturn: [])
         
+        //
+        TickerManager.shared.viewModel = self
+        
         // 모델에 영향을 주는 코드는 뷰모델에서 관리
         WebSocketManager.shared.viewModel = self
     }
@@ -34,11 +37,20 @@ class UpbitTickerViewModel {
     var obDict: [String: PublishSubject<UpbitTickerModel>] = [:]
     
     func updateTicker(ticker: UpbitTickerModel) {
-        if obDict[ticker.code] == nil {
-            obDict[ticker.code] = PublishSubject<UpbitTickerModel>()
+//        if obDict[ticker.code] == nil {
+//            obDict[ticker.code] = PublishSubject<UpbitTickerModel>()
+//        }
+//        input1.accept(Array(obDict.values))
+        obDict[ticker.code]?.on(.next(ticker))
+    }
+    
+    func setInput(markets: [UpbitMarketCodeModel]) {
+        for ticker in markets {
+            if obDict[ticker.market] == nil {
+                obDict[ticker.market] = PublishSubject<UpbitTickerModel>()
+            }
         }
         input1.accept(Array(obDict.values))
-//        obDict[ticker]?.on(.next(model))
-        
     }
+
 }

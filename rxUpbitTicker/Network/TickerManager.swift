@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import RxSwift
 
 class TickerManager {
     static let shared = TickerManager()
+    var viewModel: UpbitTickerViewModel?
     
     var tickerDict:[String:UpbitTickerModel] = [String:UpbitTickerModel]()
     
@@ -19,6 +21,10 @@ class TickerManager {
     func start() {
         APIManager.shared.getMarketAll { models in
             let krwSymbols = models.filter { $0.market.contains("KRW-") }
+            for sym in krwSymbols {
+                self.tickerDict[sym.market] = UpbitTickerModel()
+            }
+            self.viewModel?.setInput(markets: krwSymbols)
             self.requestUpbitTicker(models: krwSymbols)
         }
     }
